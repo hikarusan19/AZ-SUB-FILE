@@ -1,0 +1,181 @@
+/* RESET */
+.loginPage {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top right, var(--primary-color) 0%, transparent 30%),
+        radial-gradient(circle at bottom left, var(--primary-color) 0%, transparent 30%),
+        #ffffff;
+}
+
+/* Center entire layout */
+.loginWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Inner container: left + right panels */
+.container {
+    display: flex;
+    max-width: 1100px;
+    width: 100%;
+    gap: 40px;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LEFT PANEL */
+.leftPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.leftPanel img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.leftPanel h2 {
+    font-size: 42px;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.leftPanel p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* RIGHT PANEL (login box) */
+.rightPanel {
+    flex: 1;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rightPanel .logo {
+    width: 180px;
+    margin-bottom: 15px;
+}
+
+.rightPanel .description {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signinPrompt {
+    font-size: 28px;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* FORM */
+.form {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    margin-bottom: 18px;
+}
+
+.formLabel {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    font-size: 14px;
+    display: block;
+}
+
+.formInput {
+    width: 100%;
+    padding: 14px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    font-size: 14px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.formInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ERROR */
+.errorText {
+    color: var(--danger-color);
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fadbd8;
+    border-left: 4px solid var(--danger-color);
+}
+
+/* BUTTON */
+.signinButton {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.signinButton:hover {
+    background: #002a64;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .leftPanel img {
+        max-height: 250px;
+    }
+
+    .leftPanel h2 {
+        font-size: 32px;
+    }
+}
+
+@media(max-width: 480px) {
+    .rightPanel {
+        padding: 30px 20px;
+    }
+
+    .signinPrompt {
+        font-size: 24px;
+    }
+}

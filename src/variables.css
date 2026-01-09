@@ -1,0 +1,38 @@
+:root {
+    /* Colors */
+    --primary-color: #003781;
+    --secondary-color: #0055b8;
+    --accent-color: #ffc107;
+    --success-color: #28a745;
+    --danger-color: #e74c3c;
+    --warning-color: #e67e22;
+    --info-color: #17a2b8;
+
+    /* Backgrounds */
+    --bg-color: #f5f7fa;
+    --card-bg: #ffffff;
+    --sidebar-bg-start: #003781;
+    --sidebar-bg-end: #002557;
+
+    /* Text */
+    --text-primary: #2c3e50;
+    --text-secondary: #6c757d;
+    --text-light: #ffffff;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Borders */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-color: #dee2e6;
+
+    /* Typography */
+    --font-family-base: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family-heading: 'Poppins', sans-serif;
+}

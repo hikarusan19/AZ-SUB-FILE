@@ -1,0 +1,287 @@
+/* ================= BASE LAYOUTFrom Dashboard ================= */
+.dashboardContainer {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg-color);
+    font-family: var(--font-family-base);
+}
+
+.sidebar {
+    width: 260px;
+    background: var(--card-bg);
+    padding: 25px 20px;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarHeader {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--text-primary);
+    margin-top: 0;
+}
+
+.sidebarMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarMenu li {
+    padding: 14px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.sidebarMenu li:hover,
+.sidebarMenu .active {
+    background: #4b63ff;
+    color: white;
+}
+
+.sidebarMenu .logout {
+    margin-top: auto;
+    background: var(--danger-color);
+    color: white;
+}
+
+.mainContent {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* ================= CARDS ================= */
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card p {
+    margin: 0;
+    font-size: 14px;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.card h2 {
+    margin-top: 6px;
+    font-size: 28px;
+    color: #2c3e50;
+}
+
+/* Card Variants */
+.card.used {
+    background: linear-gradient(135deg, #27ae60, #1e8449);
+    color: #fff;
+}
+
+.card.used p,
+.card.used h2 {
+    color: #fff;
+}
+
+.card.issued {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: #fff;
+}
+
+.card.issued p,
+.card.issued h2 {
+    color: #fff;
+}
+
+/* ================= TABLE ================= */
+.tableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tableHeader h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.importBtn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.importBtn:hover {
+    background-color: #1e8449;
+}
+
+.tableControls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tableControls button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.tableControls button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.tableContainer {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.serialTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.serialTable th,
+.serialTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.serialTable th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.serialTable tbody tr:hover {
+    background-color: #f5f7fb;
+}
+
+/* ================= MODAL ================= */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.modal {
+    background: #fff;
+    padding: 25px 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    width: 400px;
+    max-width: 90%;
+}
+
+.modal h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
+.modal input[type="file"],
+.modal select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background: white;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.submitBtn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.submitBtn:hover {
+    background-color: #1e8449;
+}
+
+.cancelBtn {
+    background-color: #95a5a6;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cancelBtn:hover {
+    background-color: #7f8c8d;
+}
+
+.loader {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 100px;
+    color: #4b63ff;
+}

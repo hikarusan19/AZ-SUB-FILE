@@ -1,0 +1,162 @@
+/* MAIN LAYOUT */
+.dashboardContainer {
+    background: var(--bg-color);
+    font-family: var(--font-family-heading);
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 260px;
+    background: var(--card-bg);
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 100;
+}
+
+/* HEADER */
+.sidebarHeader h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #3a3a3a;
+    margin-bottom: 25px;
+}
+
+/* MENU */
+.sidebarMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    /* pushes logout to bottom */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Menu Items */
+.sidebarMenu li {
+    padding: 14px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: 500;
+    color: #444;
+
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.sidebarMenu li:hover {
+    background: #4b63ff;
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Active link */
+.sidebarMenu .active {
+    background: #4b63ff;
+    color: white;
+}
+
+/* LOGOUT BUTTON AT BOTTOM */
+.sidebarMenu .logout {
+    margin-top: auto;
+    background: #ff4b4b;
+    color: white;
+}
+
+.sidebarMenu .logout:hover {
+    background: #ff2222;
+}
+
+/* MAIN CONTENT */
+.mainContent {
+    margin-left: 260px;
+    padding: 40px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    width: 280px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.card .number {
+    margin-top: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #4b63ff;
+}
+
+/* LOADER */
+.loader {
+    text-align: center;
+    font-size: 22px;
+    padding-top: 50px;
+}
+
+/* GRID */
+.cardsGrid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.cardIcon {
+    font-size: 24px;
+    color: #4b63ff;
+    margin-bottom: 15px;
+}
+
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTitle {
+    font-size: 14px;
+    color: #777;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.cardNumber {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 5px;
+}

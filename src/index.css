@@ -1,0 +1,27 @@
+@import './variables.css';
+
+/* --- GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f7fa;
+    min-height: 100vh;
+    color: #2c3e50;
+}
+
+#root {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* 
+   NOTE: Dashboard, Sidebar, TopBar, and Component styles 
+   have been moved to src/pages/AP/AP_Styles.css and src/pages/AL/AL_Styles.css
+   and scoped to their respective sections.
+*/
