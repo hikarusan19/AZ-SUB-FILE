@@ -371,9 +371,9 @@ app.get('/api/monitoring/all', async (req, res) => {
 
 // --- UPDATED CUSTOMERS ENDPOINT (FIXED BLANK DATA) ---
 app.get('/api/customers', async (req, res) => {
-  // FIX: select(..., agency(name)) based on SCHEMA
+  // FIX: select(..., payment_history(*)) to include history
   const { data } = await supabase.from('az_submissions')
-    .select(`*, policy (policy_type), serial_number (serial_number), users (agency(name))`);
+    .select(`*, policy (policy_type), serial_number (serial_number), users (agency(name)), payment_history(*)`);
 
   const map = {};
   (data || []).forEach(s => {
@@ -393,7 +393,8 @@ app.get('/api/customers', async (req, res) => {
         ...s,
         policy_type: s.policy?.policy_type,
         serial_number: s.serial_number?.serial_number,
-        agency: s.users?.agency?.name // Use 'name' from Agency
+        agency: s.users?.agency?.name, // Use 'name' from Agency
+        payment_history: s.payment_history || [] // Ensure array
       };
 
       map[s.client_email].submissions.push(flatSubmission);
@@ -404,7 +405,13 @@ app.get('/api/customers', async (req, res) => {
 
 app.patch('/api/form-submissions/:id/status', async (req, res) => {
   const { id } = req.params; const { status } = req.body;
-  await supabase.from('az_submissions').update({ status }).eq('sub_id', id);
+
+  const updateData = { status };
+  if (status === 'Issued') {
+    updateData.date_issued = new Date().toISOString();
+  }
+
+  await supabase.from('az_submissions').update(updateData).eq('sub_id', id);
   res.json({ success: true });
 });
 app.post('/api/submissions/:id/pay', async (req, res) => {
@@ -412,10 +419,46 @@ app.post('/api/submissions/:id/pay', async (req, res) => {
     const { id } = req.params;
     const { data: policy } = await supabase.from('az_submissions').select('*').eq('sub_id', id).limit(1).maybeSingle();
     if (!policy) return res.status(404).json({ success: false, message: 'Not found' });
+
+    // 1. Record in History
+    // Parse amount to ensure numeric (remove commas if string, etc)
+    let safeAmount = 0;
+    if (policy.premium_paid) {
+      safeAmount = typeof policy.premium_paid === 'string'
+        ? parseFloat(policy.premium_paid.replace(/,/g, ''))
+        : parseFloat(policy.premium_paid);
+    }
+
+    const historyPayload = {
+      sub_id: id,
+      amount: safeAmount || 0,
+      period_covered: policy.next_payment_date,
+      payment_date: new Date().toISOString()
+    };
+    console.log('Inserting History:', historyPayload);
+
+    const { error: histError } = await supabase.from('payment_history').insert([historyPayload]);
+
+    if (histError) {
+      console.error('History Insert Error:', histError);
+      throw new Error('Failed to record payment history: ' + histError.message);
+    }
+    else console.log('History Insert Success');
+
+    // 2. Rollover Date
     const newDueDate = calculateNextPaymentDate(policy.next_payment_date, policy.mode_of_payment);
-    await supabase.from('az_submissions').update({ next_payment_date: newDueDate }).eq('sub_id', id);
+
+    // 3. Update Submission (Reset is_paid to false for next cycle)
+    await supabase.from('az_submissions').update({
+      next_payment_date: newDueDate,
+      is_paid: false
+    }).eq('sub_id', id);
+
     res.json({ success: true, message: 'Paid', nextDate: newDueDate });
-  } catch (e) { res.status(500).json({ success: false, message: e.message }); }
+  } catch (e) {
+    console.error('PAY ENDPOINT ERROR:', e);
+    res.status(500).json({ success: false, message: e.message });
+  }
 });
 
 // Performance endpoint for AL dashboard
